@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StudyIt! - Enhanced UI Example</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- =============== HEADER =============== -->
+  <header class="top-nav">
+    <div class="logo">
+      <h1 class="app-title">StudyIt!</h1>
+    </div>
+    <nav class="top-menu">
+      <ul>
+        <li><a href="#" onclick="alert('About page placeholder')">About</a></li>
+        <li><a href="#" onclick="alert('Contact page placeholder')">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- =============== LANDING/LOGIN SECTION =============== -->
+  <section id="landingPage" class="page-section">
+    <div class="landing-hero">
+      <div class="overlay"></div>
+      <div class="hero-content">
+        <h2>Welcome to StudyIt!</h2>
+        <p>Your AI-Powered Study Buddy</p>
+        <button class="cta-button" onclick="showLogin()">Get Started</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="loginPage" class="page-section hidden">
+    <div class="login-container">
+      <h2>Login</h2>
+      <p>Enter your credentials to access your personalized StudyIt! dashboard.</p>
+      <div class="login-form">
+        <input type="text" id="usernameInput" placeholder="Username"/>
+        <input type="password" id="passwordInput" placeholder="Password"/>
+        <button class="login-btn" onclick="login()">Log In</button>
+      </div>
+      <p class="signup-link">
+        Don’t have an account?
+        <a href="#" onclick="alert('Sign Up Placeholder')">Sign Up</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- =============== DASHBOARD SECTION =============== -->
+  <section id="dashboardPage" class="page-section hidden">
+    <div class="dashboard-layout">
+
+      <!-- ===== SIDEBAR ===== -->
+      <aside class="sidebar">
+        <div class="profile-area">
+          <div class="avatar"></div>
+          <div class="user-info">
+            <span id="displayUsername" class="username">User</span>
+            <small class="user-role">Student</small>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li><a href="#" id="linkDashboard" class="active" onclick="showTab('tabDashboard')">Dashboard</a></li>
+          <li><a href="#" id="linkSubjects" onclick="showTab('tabSubjects')">Subjects & Preferences</a></li>
+          <li><a href="#" id="linkFlashcards" onclick="showTab('tabFlashcards')">Flashcards</a></li>
+          <li><a href="#" id="linkQuizzes" onclick="showTab('tabQuizzes')">Quizzes</a></li>
+          <li><a href="#" id="linkTutor" onclick="showTab('tabTutor')">AI Tutor</a></li>
+          <li><a href="#" id="linkStudyPlan" onclick="showTab('tabStudyPlan')">Study Plan</a></li>
+          <li><a href="#" id="linkProgress" onclick="showTab('tabProgress')">Progress</a></li>
+          <li><a href="#" id="linkReminders" onclick="showTab('tabReminders')">Reminders</a></li>
+          <li><a href="#" id="linkGamification" onclick="showTab('tabGamification')">Gamification</a></li>
+          <li><a href="#" id="linkReview" onclick="showTab('tabReview')">Review History</a></li>
+          <li><a href="#" id="linkResources" onclick="showTab('tabResources')">Additional Resources</a></li>
+        </ul>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+      </aside>
+
+      <!-- ===== MAIN CONTENT (TABS) ===== -->
+      <main class="main-content">
+
+        <!-- =========== TAB: Dashboard Overview =========== -->
+        <div id="tabDashboard" class="tab-content">
+          <h2>Dashboard Overview</h2>
+          <p>Welcome to StudyIt! Here’s a quick glance at your recent activity and upcoming tasks.</p>
+          <div class="overview-grid">
+            <div class="overview-card">
+              <h3>Recent Study Sessions</h3>
+              <p>2 sessions completed this week</p>
+            </div>
+            <div class="overview-card">
+              <h3>Upcoming Quizzes</h3>
+              <p>Math quiz on Friday</p>
+            </div>
+            <div class="overview-card">
+              <h3>Current Streak</h3>
+              <p>4 days in a row</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- =========== TAB: Subjects & Preferences =========== -->
+        <div id="tabSubjects" class="tab-content hidden">
+          <h2>Subjects & Preferences</h2>
+          <p>Customize your study subjects, goals, difficulty levels, and notifications.</p>
+          <div class="prefs-container">
+            <div class="form-group">
+              <label>Subjects</label>
+              <div class="checkbox-group">
+                <label><input type="checkbox" checked/> Math</label>
+                <label><input type="checkbox"/> Biology</label>
+                <label><input type="checkbox"/> Literature</label>
+                <button onclick="alert('Add new subject placeholder')">+ Add Subject</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Daily Study Goal (minutes)</label>
+              <input type="number" value="30"/>
+            </div>
+            <div class="form-group">
+              <label>Difficulty Level</label>
+              <select>
+                <option>Easy</option>
+                <option selected>Medium</option>
+                <option>Hard</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Notifications</label>
+              <select>
+                <option>On</option>
+                <option>Off</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- NEW: Generate AI Notes (subject/topic) -->
+          <div class="generate-ai-notes-section" style="margin-top:1.5rem;">
+            <h3>Generate AI Notes</h3>
+            <p>Enter a subject and topic to generate AI-powered notes.</p>
+            <label>Subject:</label>
+            <input type="text" id="notesSubject" placeholder="e.g. Biology"/>
+            <label>Topic:</label>
+            <input type="text" id="notesTopic" placeholder="e.g. Cell Division"/>
+            <button onclick="alert('Generating AI Notes for your topic...')">Generate Notes</button>
+          </div>
+
+          <button class="save-btn" style="margin-top:1.5rem;" onclick="alert('Preferences Saved!')">
+            Save Preferences
+          </button>
+        </div>
+
+        <!-- =========== TAB: Flashcards =========== -->
+        <div id="tabFlashcards" class="tab-content hidden">
+          <h2>Flashcards</h2>
+          <p>Review and create AI-generated flashcards for your subjects. Spaced repetition helps retention.</p>
+          <div class="flashcards-layout">
+            <div class="flashcard-create">
+              <h3>Create a New Flashcard</h3>
+              <label for="fc-term">Term:</label>
+              <input id="fc-term" type="text" placeholder="Enter term..."/>
+              <label for="fc-definition">Definition:</label>
+              <textarea id="fc-definition" placeholder="Enter definition..."></textarea>
+              <button onclick="alert('Flashcard Created!')">Add Flashcard</button>
+            </div>
+            <div class="flashcard-list">
+              <h3>Your Flashcards</h3>
+              <div class="card-item">
+                <div class="term">Term: Photosynthesis</div>
+                <div class="definition">Definition: The process by which green plants and some other organisms...</div>
+              </div>
+              <div class="card-item">
+                <div class="term">Term: Pythagorean Theorem</div>
+                <div class="definition">Definition: a² + b² = c² for right triangles</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- NEW: Generate AI Flashcards (subject/topic) -->
+          <div class="generate-ai-flashcards" style="margin-top:1.5rem;">
+            <h3>Generate AI Flashcards</h3>
+            <p>Enter a subject and topic to automatically create new flashcards.</p>
+            <label>Subject:</label>
+            <input type="text" id="flashcardsSubject" placeholder="e.g. Math"/>
+            <label>Topic:</label>
+            <input type="text" id="flashcardsTopic" placeholder="e.g. Algebra Basics"/>
+            <button onclick="alert('Generating AI Flashcards...')">Generate Flashcards</button>
+          </div>
+        </div>
+
+        <!-- =========== TAB: Quizzes =========== -->
+        <div id="tabQuizzes" class="tab-content hidden">
+          <h2>Quizzes</h2>
+          <p>Generate and take quizzes based on selected subjects and difficulty levels. Get instant feedback!</p>
+
+          <!-- Existing quiz setup -->
+          <div class="quiz-setup">
+            <label>Subject</label>
+            <select>
+              <option>Math</option>
+              <option>Biology</option>
+              <option>Literature</option>
+            </select>
+            <label>Difficulty</label>
+            <select>
+              <option>Easy</option>
+              <option>Medium</option>
+              <option>Hard</option>
+            </select>
+            <button onclick="alert('Quiz Created!')">Start Quiz</button>
+          </div>
+
+          <div class="quiz-content">
+            <h3>Sample Quiz Question</h3>
+            <p>What is 2 + 2?</p>
+            <input type="radio" name="q1"/> 2<br/>
+            <input type="radio" name="q1"/> 3<br/>
+            <input type="radio" name="q1"/> 4<br/>
+            <button onclick="alert('Your answer is correct!')">Submit</button>
+          </div>
+
+          <!-- NEW: Generate AI Quizzes (subject/topic) -->
+          <div class="ai-quiz-generator" style="margin-top:1.5rem;">
+            <h3>Generate AI Quizzes</h3>
+            <p>Enter a subject and topic to create a custom quiz.</p>
+            <label>Subject:</label>
+            <input type="text" id="quizSubject" placeholder="e.g. Chemistry"/>
+            <label>Topic:</label>
+            <input type="text" id="quizTopic" placeholder="e.g. Atomic Structure"/>
+            <button onclick="alert('Generating AI Quiz...')">Generate AI Quiz</button>
+          </div>
+        </div>
+
+        <!-- =========== TAB: AI Tutor =========== -->
+        <div id="tabTutor" class="tab-content hidden">
+          <h2>AI Tutor</h2>
+          <p>Ask questions and receive detailed explanations, diagrams, or video suggestions.</p>
+          <div class="tutor-interface">
+            <div class="question-area">
+              <textarea placeholder="Ask a question..."></textarea>
+              <button onclick="alert('AI is thinking...')">Ask Tutor</button>
+            </div>
+            <div class="answer-area">
+              <h3>AI Response</h3>
+              <p><em>Here’s where the AI’s detailed explanation would appear...</em></p>
+            </div>
+          </div>
+
+          <!-- NEW: Generate Explanation Videos (subject/topic) -->
+          <div class="explanation-videos" style="margin-top:1.5rem;">
+            <h3>Generate Explanation Videos</h3>
+            <p>Enter a subject and topic to get short video explanations.</p>
+            <label>Subject:</label>
+            <input type="text" id="videoSubject" placeholder="e.g. Physics"/>
+            <label>Topic:</label>
+            <input type="text" id="videoTopic" placeholder="e.g. Laws of Motion"/>
+            <button onclick="alert('Generating Explanation Video...')">Generate Video</button>
+          </div>
+        </div>
+
+        <!-- =========== TAB: Study Plan =========== -->
+        <div id="tabStudyPlan" class="tab-content hidden">
+          <h2>Study Plan</h2>
+          <p>View your personalized schedule of upcoming study sessions and quiz deadlines.</p>
+          <div class="studyplan-layout">
+            <div class="calendar-view">
+              <h3>This Week’s Plan</h3>
+              <ul>
+                <li><strong>Monday:</strong> 30 min Math practice</li>
+                <li><strong>Tuesday:</strong> Biology flashcards review</li>
+                <li><strong>Wednesday:</strong> Literature quiz attempt</li>
+                <li><strong>Thursday:</strong> AI Tutor session</li>
+                <li><strong>Friday:</strong> Practice test for Math</li>
+              </ul>
+            </div>
+            <button onclick="alert('Generating new plan...')">Generate New Plan</button>
+          </div>
+        </div>
+
+        <!-- =========== TAB: Progress =========== -->
+        <div id="tabProgress" class="tab-content hidden">
+          <h2>Progress Tracking</h2>
+          <p>Monitor your performance over time. Identify strengths and weaknesses in each subject.</p>
+          <div class="progress-charts">
+            <div class="chart-card">
+              <h3>Overall Quiz Scores</h3>
+              <p><em>Placeholder for a chart (e.g., line or bar chart showing quiz scores).</em></p>
+            </div>
+            <div class="stats-card">
+              <h3>Subject Strengths</h3>
+              <ul>
+                <li>Math: 85%</li>
+                <li>Biology: 78%</li>
+                <li>Literature: 90%</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- =========== TAB: Reminders =========== -->
+        <div id="tabReminders" class="tab-content hidden">
+          <h2>Reminders</h2>
+          <p>Never miss a session or exam. Manage notifications and scheduled alerts.</p>
+          <div class="reminder-list">
+            <h3>Upcoming Reminders</h3>
+            <ul>
+              <li>Math Quiz: 2 days away</li>
+              <li>Flashcard Review: Tonight at 8 PM</li>
+              <li>Biology Exam: Next Wednesday</li>
+            </ul>
+          </div>
+          <button onclick="alert('New reminder placeholder')">Add New Reminder</button>
+        </div>
+
+        <!-- =========== TAB: Gamification =========== -->
+        <div id="tabGamification" class="tab-content hidden">
+          <h2>Gamification</h2>
+          <p>Earn streaks, achievements, and climb leaderboards to stay motivated.</p>
+          <div class="gamification-layout">
+            <div class="achievement-card">
+              <h3>Achievements</h3>
+              <ul>
+                <li>5-day study streak</li>
+                <li>100 flashcards reviewed</li>
+                <li>Scored 90% on 3 quizzes</li>
+              </ul>
+            </div>
+            <div class="leaderboard-card">
+              <h3>Leaderboard</h3>
+              <ol>
+                <li>Alice - 2500 pts</li>
+                <li>You - 2100 pts</li>
+                <li>Bob - 1800 pts</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <!-- =========== TAB: Review History =========== -->
+        <div id="tabReview" class="tab-content hidden">
+          <h2>Review History</h2>
+          <p>Access past quizzes, flashcards, notes, and study logs.</p>
+          <div class="review-history">
+            <h3>Past Quizzes</h3>
+            <ul>
+              <li>Math Quiz (4/5/2025) - Score: 85% <button>Review</button></li>
+              <li>Biology Quiz (4/6/2025) - Score: 90% <button>Review</button></li>
+            </ul>
+            <h3>Flashcards Reviewed</h3>
+            <ul>
+              <li>Photosynthesis (Reviewed 3x)</li>
+              <li>Pythagorean Theorem (Reviewed 2x)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- =========== TAB: Additional Resources =========== -->
+        <div id="tabResources" class="tab-content hidden">
+          <h2>Additional Resources</h2>
+          <p>Find book recommendations, external links, and more to boost your study.</p>
+          <div class="resources-layout">
+            <input type="text" placeholder="Search for topic..."/>
+            <button onclick="alert('Fetching resources...')">Search</button>
+            <div class="resource-results">
+              <h3>Recommended Resources</h3>
+              <ul>
+                <li><strong>Book:</strong> “Algebra for Beginners”</li>
+                <li><strong>Link:</strong> <a href="#">www.biologyresources.org</a></li>
+                <li><strong>Video:</strong> “Intro to Literature Analysis” on YouTube</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </section>
+
+  <!-- =============== FOOTER =============== -->
+  <footer class="site-footer">
+    <p>&copy; 2025 StudyIt! All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
